@@ -1,16 +1,14 @@
 package com.danielstone.materialaboutlibrary.adapters;
 
 import android.content.Context;
-import androidx.recyclerview.widget.AsyncListDiffer;
-import androidx.recyclerview.widget.DiffUtil;
-import androidx.cardview.widget.CardView;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+
+import androidx.cardview.widget.CardView;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.danielstone.materialaboutlibrary.R;
 import com.danielstone.materialaboutlibrary.model.MaterialAboutCard;
@@ -24,12 +22,11 @@ import java.util.UUID;
 
 public class MaterialAboutListAdapter extends RecyclerView.Adapter<MaterialAboutListAdapter.MaterialAboutListViewHolder> {
 
-
-    private final AsyncListDiffer<MaterialAboutCard> differ = new AsyncListDiffer<MaterialAboutCard>(this, DIFF_CALLBACK);
-
     private Context context;
 
     private ViewTypeManager viewTypeManager;
+
+    private List<MaterialAboutCard> data = new ArrayList<>();
 
     public MaterialAboutListAdapter() {
         setHasStableIds(true);
@@ -55,7 +52,7 @@ public class MaterialAboutListAdapter extends RecyclerView.Adapter<MaterialAbout
 
     @Override
     public void onBindViewHolder(MaterialAboutListViewHolder holder, int position) {
-        MaterialAboutCard card = differ.getCurrentList().get(position);
+        MaterialAboutCard card = data.get(position);
 
         if (holder.cardView instanceof CardView) {
             CardView cardView = (CardView) holder.cardView;
@@ -99,25 +96,21 @@ public class MaterialAboutListAdapter extends RecyclerView.Adapter<MaterialAbout
 
     @Override
     public long getItemId(int position) {
-        return UUID.fromString(differ.getCurrentList().get(position).getId()).getMostSignificantBits() & Long.MAX_VALUE;
+        return UUID.fromString(data.get(position).getId()).getMostSignificantBits() & Long.MAX_VALUE;
     }
 
     @Override
     public int getItemCount() {
-        return differ.getCurrentList().size();
+        return data.size();
     }
 
     public void setData(ArrayList<MaterialAboutCard> newData) {
-        List<MaterialAboutCard> data = new ArrayList<>();
-        for (MaterialAboutCard card : newData) {
-            data.add(card.clone());
-        }
-        differ.submitList(data);
+        this.data = newData;
+        notifyDataSetChanged();
     }
 
-
     List<MaterialAboutCard> getData() {
-        return differ.getCurrentList();
+        return data;
     }
 
     class MaterialAboutListViewHolder extends RecyclerView.ViewHolder {
@@ -153,23 +146,4 @@ public class MaterialAboutListAdapter extends RecyclerView.Adapter<MaterialAbout
             }
         }
     }
-
-
-    public static final DiffUtil.ItemCallback<MaterialAboutCard> DIFF_CALLBACK = new DiffUtil.ItemCallback<MaterialAboutCard>() {
-        @Override
-        public boolean areItemsTheSame(MaterialAboutCard oldItem, MaterialAboutCard newItem) {
-            return oldItem.getId().equals(newItem.getId());
-        }
-
-        @Override
-        public boolean areContentsTheSame(MaterialAboutCard oldItem, MaterialAboutCard newItem) {
-            boolean result;
-            result = oldItem.toString().equals(newItem.toString());
-            if (oldItem.getItems().size() != newItem.getItems().size()) return false;
-            for (int i = 0; i < oldItem.getItems().size(); i++) {
-                if (!oldItem.getItems().get(i).getDetailString().equals(newItem.getItems().get(i).getDetailString())) return false;
-            }
-            return result;
-        }
-    };
 }
