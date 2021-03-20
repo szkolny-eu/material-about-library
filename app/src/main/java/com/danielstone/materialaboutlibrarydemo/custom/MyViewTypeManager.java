@@ -9,6 +9,7 @@ import com.danielstone.materialaboutlibrary.items.MaterialAboutActionItem;
 import com.danielstone.materialaboutlibrary.items.MaterialAboutActionSwitchItem;
 import com.danielstone.materialaboutlibrary.items.MaterialAboutCheckBoxItem;
 import com.danielstone.materialaboutlibrary.items.MaterialAboutItem;
+import com.danielstone.materialaboutlibrary.items.MaterialAboutSectionItem;
 import com.danielstone.materialaboutlibrary.items.MaterialAboutSwitchItem;
 import com.danielstone.materialaboutlibrary.items.MaterialAboutTitleItem;
 import com.danielstone.materialaboutlibrary.util.ViewTypeManager;
@@ -16,8 +17,20 @@ import com.danielstone.materialaboutlibrarydemo.R;
 
 import static com.danielstone.materialaboutlibrary.util.DefaultViewTypeManager.ItemType.CHECKBOX_ITEM;
 import static com.danielstone.materialaboutlibrary.util.DefaultViewTypeManager.ItemType.SWITCH_ITEM;
-import static com.danielstone.materialaboutlibrarydemo.custom.MyViewTypeManager.ItemLayout.*;
-import static com.danielstone.materialaboutlibrarydemo.custom.MyViewTypeManager.ItemType.*;
+import static com.danielstone.materialaboutlibrarydemo.custom.MyViewTypeManager.ItemLayout.ACTION_CHECKBOX_LAYOUT;
+import static com.danielstone.materialaboutlibrarydemo.custom.MyViewTypeManager.ItemLayout.ACTION_LAYOUT;
+import static com.danielstone.materialaboutlibrarydemo.custom.MyViewTypeManager.ItemLayout.ACTION_SWITCH_LAYOUT;
+import static com.danielstone.materialaboutlibrarydemo.custom.MyViewTypeManager.ItemLayout.CHECKBOX_LAYOUT;
+import static com.danielstone.materialaboutlibrarydemo.custom.MyViewTypeManager.ItemLayout.CUSTOM_LAYOUT;
+import static com.danielstone.materialaboutlibrarydemo.custom.MyViewTypeManager.ItemLayout.SECTION_LAYOUT;
+import static com.danielstone.materialaboutlibrarydemo.custom.MyViewTypeManager.ItemLayout.SWITCH_LAYOUT;
+import static com.danielstone.materialaboutlibrarydemo.custom.MyViewTypeManager.ItemLayout.TITLE_LAYOUT;
+import static com.danielstone.materialaboutlibrarydemo.custom.MyViewTypeManager.ItemType.ACTION_CHECKBOX_ITEM;
+import static com.danielstone.materialaboutlibrarydemo.custom.MyViewTypeManager.ItemType.ACTION_ITEM;
+import static com.danielstone.materialaboutlibrarydemo.custom.MyViewTypeManager.ItemType.ACTION_SWITCH_ITEM;
+import static com.danielstone.materialaboutlibrarydemo.custom.MyViewTypeManager.ItemType.CUSTOM_ITEM;
+import static com.danielstone.materialaboutlibrarydemo.custom.MyViewTypeManager.ItemType.SECTION_ITEM;
+import static com.danielstone.materialaboutlibrarydemo.custom.MyViewTypeManager.ItemType.TITLE_ITEM;
 
 public class MyViewTypeManager extends ViewTypeManager {
 
@@ -28,6 +41,7 @@ public class MyViewTypeManager extends ViewTypeManager {
         public static final int SWITCH_ITEM = ViewTypeManager.ItemType.SWITCH_ITEM;
         public static final int ACTION_CHECKBOX_ITEM = ViewTypeManager.ItemType.ACTION_CHECKBOX_ITEM;
         public static final int ACTION_SWITCH_ITEM = ViewTypeManager.ItemType.ACTION_SWITCH_ITEM;
+        public static final int SECTION_ITEM = ViewTypeManager.ItemType.SECTION_ITEM;
         public static final int CUSTOM_ITEM = 10;
     }
 
@@ -38,6 +52,7 @@ public class MyViewTypeManager extends ViewTypeManager {
         public static final int SWITCH_LAYOUT = ViewTypeManager.ItemLayout.SWITCH_LAYOUT;
         public static final int ACTION_CHECKBOX_LAYOUT = ViewTypeManager.ItemLayout.ACTION_CHECKBOX_LAYOUT;
         public static final int ACTION_SWITCH_LAYOUT = ViewTypeManager.ItemLayout.ACTION_SWITCH_LAYOUT;
+        public static final int SECTION_LAYOUT = ViewTypeManager.ItemLayout.SECTION_LAYOUT;
         public static final int CUSTOM_LAYOUT = R.layout.custom_item;
     }
 
@@ -56,6 +71,8 @@ public class MyViewTypeManager extends ViewTypeManager {
                 return ACTION_CHECKBOX_LAYOUT;
             case ACTION_SWITCH_ITEM:
                 return ACTION_SWITCH_LAYOUT;
+            case SECTION_ITEM:
+                return SECTION_LAYOUT;
             case CUSTOM_ITEM:
                 return CUSTOM_LAYOUT;
             default:
@@ -77,6 +94,8 @@ public class MyViewTypeManager extends ViewTypeManager {
                 return MaterialAboutActionCheckBoxItem.getViewHolder(view);
             case ACTION_SWITCH_ITEM:
                 return MaterialAboutActionSwitchItem.getViewHolder(view);
+            case SECTION_ITEM:
+                return MaterialAboutSectionItem.getViewHolder(view);
             case CUSTOM_ITEM:
                 return MyCustomItem.getViewHolder(view);
             default:
@@ -106,6 +125,9 @@ public class MyViewTypeManager extends ViewTypeManager {
                 break;
             case ACTION_SWITCH_ITEM:
                 MaterialAboutActionSwitchItem.setupItem((MaterialAboutActionSwitchItem.MaterialAboutActionSwitchItemViewHolder) holder, (MaterialAboutActionSwitchItem) item, context);
+                break;
+            case SECTION_ITEM:
+                MaterialAboutSectionItem.setupItem((MaterialAboutSectionItem.MaterialAboutSectionItemViewHolder) holder, (MaterialAboutSectionItem) item, context);
                 break;
         }
     }

@@ -6,8 +6,6 @@ import android.graphics.Color;
 import android.net.Uri;
 import android.widget.Toast;
 
-import androidx.core.content.ContextCompat;
-
 import com.danielstone.materialaboutlibrary.ConvenienceBuilder;
 import com.danielstone.materialaboutlibrary.items.MaterialAboutActionCheckBoxItem;
 import com.danielstone.materialaboutlibrary.items.MaterialAboutActionItem;
@@ -16,6 +14,7 @@ import com.danielstone.materialaboutlibrary.items.MaterialAboutCheckBoxItem;
 import com.danielstone.materialaboutlibrary.items.MaterialAboutCheckableItem;
 import com.danielstone.materialaboutlibrary.items.MaterialAboutItemOnClickAction;
 import com.danielstone.materialaboutlibrary.items.MaterialAboutOnCheckedChangedAction;
+import com.danielstone.materialaboutlibrary.items.MaterialAboutSectionItem;
 import com.danielstone.materialaboutlibrary.items.MaterialAboutSwitchItem;
 import com.danielstone.materialaboutlibrary.items.MaterialAboutTitleItem;
 import com.danielstone.materialaboutlibrary.model.MaterialAboutCard;
@@ -88,6 +87,10 @@ public class Demo {
                 .build()
         );
 
+        appCardBuilder.addItem(new MaterialAboutSectionItem.Builder()
+                .text("Section 1")
+                .build());
+
         appCardBuilder.addItem(new MaterialAboutActionCheckBoxItem.Builder()
                 .text("Action Checkbox")
                 .subText("Sub Text unchecked")
@@ -147,6 +150,10 @@ public class Demo {
                 })
                 .build()
         );
+
+        appCardBuilder.addItem(new MaterialAboutSectionItem.Builder()
+                .text("Section 2")
+                .build());
 
         appCardBuilder.addItem(new MaterialAboutActionItem.Builder()
                 .text("Licenses")

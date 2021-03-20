@@ -16,6 +16,7 @@ public abstract class ViewTypeManager {
         public static final int SWITCH_ITEM = 3;
         public static final int ACTION_CHECKBOX_ITEM = 4;
         public static final int ACTION_SWITCH_ITEM = 5;
+        public static final int SECTION_ITEM = 6;
     }
 
     public static final class ItemLayout {
@@ -25,6 +26,7 @@ public abstract class ViewTypeManager {
         public static final int SWITCH_LAYOUT = R.layout.mal_material_about_switch_item;
         public static final int ACTION_CHECKBOX_LAYOUT = R.layout.mal_material_about_action_checkbox_item;
         public static final int ACTION_SWITCH_LAYOUT = R.layout.mal_material_about_action_switch_item;
+        public static final int SECTION_LAYOUT = R.layout.mal_material_about_section_item;
     }
 
     public abstract int getLayout(int itemType);
