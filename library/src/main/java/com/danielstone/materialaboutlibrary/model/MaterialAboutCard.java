@@ -22,6 +22,8 @@ public class MaterialAboutCard {
     private int titleColor = 0;
     private int cardColor = 0;
 
+    private int theme = 0;
+
     private RecyclerView.Adapter customAdapter = null;
     private ArrayList<MaterialAboutItem> items = new ArrayList<>();
     ;
@@ -32,6 +34,7 @@ public class MaterialAboutCard {
         this.titleRes = builder.titleRes;
         this.titleColor = builder.titleColor;
         this.cardColor = builder.cardColor;
+        this.theme = builder.theme;
         this.items = builder.items;
         this.customAdapter = builder.customAdapter;
     }
@@ -62,6 +65,10 @@ public class MaterialAboutCard {
         return cardColor;
     }
 
+    public int getTheme() {
+        return theme;
+    }
+
     public ArrayList<MaterialAboutItem> getItems() {
         return items;
     }
@@ -76,6 +83,9 @@ public class MaterialAboutCard {
 
         @ColorInt
         private int cardColor = 0;
+
+        @StyleRes
+        private int theme = 0;
 
         private ArrayList<MaterialAboutItem> items = new ArrayList<>();
         private RecyclerView.Adapter customAdapter = null;
@@ -99,6 +109,11 @@ public class MaterialAboutCard {
 
         public Builder cardColor(@ColorInt int cardColor) {
             this.cardColor = cardColor;
+            return this;
+        }
+
+        public Builder theme(@StyleRes int theme) {
+            this.theme = theme;
             return this;
         }
 
@@ -133,7 +148,8 @@ public class MaterialAboutCard {
                 ", titleRes=" + titleRes +
                 ", titleColor=" + titleColor +
                 ", customAdapter=" + customAdapter +
-                ", cardColor=" + cardColor + '}';
+                ", cardColor=" + cardColor +
+                ", theme=" + theme + '}';
         return result;
     }
 
@@ -143,6 +159,7 @@ public class MaterialAboutCard {
         this.titleRes = card.getTitleRes();
         this.titleColor = card.getTitleColor();
         this.cardColor = card.getCardColor();
+        this.theme = card.getTheme();
         this.items = new ArrayList<>();
         this.customAdapter = card.getCustomAdapter();
         for (MaterialAboutItem item : card.items) {

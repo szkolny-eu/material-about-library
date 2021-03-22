@@ -247,6 +247,8 @@ public class Demo {
 
         otherCardBuilder.cardColor(Color.parseColor("#c0cfff"));
 
+        otherCardBuilder.theme(R.style.AppTheme);
+
         otherCardBuilder.addItem(new MaterialAboutActionItem.Builder()
                 .icon(new IconicsDrawable(c)
                         .icon(CommunityMaterial.Icon.cmd_language_html5)

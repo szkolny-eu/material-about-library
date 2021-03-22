@@ -6,6 +6,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import androidx.appcompat.view.ContextThemeWrapper;
 import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -42,7 +43,12 @@ public class MaterialAboutListAdapter extends RecyclerView.Adapter<MaterialAbout
     public MaterialAboutListViewHolder onCreateViewHolder(ViewGroup viewGroup, int viewType) {
         context = viewGroup.getContext();
         if (viewGroup instanceof RecyclerView) {
-            View view = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.mal_material_about_list_card, viewGroup, false);
+            Context context = viewGroup.getContext();
+            // viewType may be set to a style resource
+            if (viewType != 0) {
+                context = new ContextThemeWrapper(context, viewType);
+            }
+            View view = LayoutInflater.from(context).inflate(R.layout.mal_material_about_list_card, viewGroup, false);
             view.setFocusable(true);
             return new MaterialAboutListViewHolder(view);
         } else {
@@ -51,11 +57,17 @@ public class MaterialAboutListAdapter extends RecyclerView.Adapter<MaterialAbout
     }
 
     @Override
+    public int getItemViewType(int position) {
+        return data.get(position).getTheme();
+    }
+
+    @Override
     public void onBindViewHolder(MaterialAboutListViewHolder holder, int position) {
         MaterialAboutCard card = data.get(position);
 
         if (holder.cardView instanceof CardView) {
             CardView cardView = (CardView) holder.cardView;
+
             int cardColor = card.getCardColor();
             if (cardColor != 0) {
                 cardView.setCardBackgroundColor(cardColor);
