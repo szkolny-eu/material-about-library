@@ -2,6 +2,8 @@ package com.danielstone.materialaboutlibrary.adapters;
 
 import android.content.Context;
 import android.view.LayoutInflater;
+import androidx.core.content.ContextCompat;
+import androidx.core.content.res.ResourcesCompat;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
@@ -19,7 +21,7 @@ import com.danielstone.materialaboutlibrary.util.ViewTypeManager;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
-
+import com.google.android.material.card.MaterialCardView;
 
 public class MaterialAboutListAdapter extends RecyclerView.Adapter<MaterialAboutListAdapter.MaterialAboutListViewHolder> {
 
@@ -97,7 +99,14 @@ public class MaterialAboutListAdapter extends RecyclerView.Adapter<MaterialAbout
                 holder.title.setTextColor(holder.title.getTextColors().getDefaultColor());
             }
         }
-
+        if (holder.cardView instanceof MaterialCardView) {
+            MaterialCardView materialCardView = (MaterialCardView) holder.cardView;
+            if (card.isOutline()) {
+                materialCardView.setStrokeWidth((int) context.getResources().getDimension(R.dimen.mal_stroke_width));
+            } else {
+                materialCardView.setStrokeWidth(0);
+            }
+        }
         if (card.getCustomAdapter() != null) {
             holder.useCustomAdapter(card.getCustomAdapter());
         } else {

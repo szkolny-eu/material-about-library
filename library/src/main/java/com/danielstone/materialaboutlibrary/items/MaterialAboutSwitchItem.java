@@ -14,7 +14,7 @@ import android.widget.TextView;
 import com.danielstone.materialaboutlibrary.R;
 import com.danielstone.materialaboutlibrary.holders.MaterialAboutItemViewHolder;
 import com.danielstone.materialaboutlibrary.util.ViewTypeManager;
-import com.google.android.material.switchmaterial.SwitchMaterial;
+import com.google.android.material.materialswitch.MaterialSwitch;
 
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
@@ -283,7 +283,7 @@ public class MaterialAboutSwitchItem extends MaterialAboutCheckableItem {
         public final ImageView icon;
         public final TextView text;
         public final TextView subText;
-        public final SwitchMaterial aSwitch;
+        public final MaterialSwitch aSwitch;
 
         MaterialAboutSwitchItemViewHolder(View view) {
             super(view);
@@ -291,7 +291,7 @@ public class MaterialAboutSwitchItem extends MaterialAboutCheckableItem {
             icon = (ImageView) view.findViewById(R.id.mal_switch_image);
             text = (TextView) view.findViewById(R.id.mal_switch_text);
             subText = (TextView) view.findViewById(R.id.mal_switch_subtext);
-            aSwitch = (SwitchMaterial) view.findViewById(R.id.mal_switch);
+            aSwitch = (MaterialSwitch) view.findViewById(R.id.mal_switch);
         }
 
         @Override
