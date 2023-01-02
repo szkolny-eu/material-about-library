@@ -60,7 +60,7 @@
         android:layout_marginVertical="@dimen/mal_baseline_half"
         android:background="@color/mal_divider_color" />
 
-    <com.google.android.material.switchmaterial.SwitchMaterial
+    <com.google.android.material.materialswitch.MaterialSwitch
         android:id="@+id/mal_switch"
         android:layout_width="wrap_content"
         android:layout_height="32dp"
